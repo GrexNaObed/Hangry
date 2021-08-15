@@ -18,7 +18,7 @@ const anchors = document.querySelectorAll('a[href*="#"]');
 const arrowDown = document.querySelectorAll('arrow-dwn');
 anchors.forEach(link => {
     const blockID = link.getAttribute('href');
-    $(link).on('click', function (e) {
+    $(link).on('click',  function (e) {
         e.preventDefault()
         $('html,body').stop().animate({ scrollTop: $(blockID).offset().top }, 1000);
         e.preventDefault();
@@ -45,7 +45,7 @@ window.addEventListener('scroll', () => {
         bookTableModal.style.display = 'none';
     }
 
-});
+}, {passive: true});
 
 
 
@@ -74,39 +74,20 @@ bookTableCrestik.addEventListener('click', (e) => {
 const listOFmenu = document.querySelector('.delicious__menu-items'),
     bloksItem = document.querySelectorAll('.delicious__menu-products-item');
 
+    const arrOfMenu = new Set();
+    const sourse = ['soupe','pizza','pasta','desert','wine','beer','drinks']
+    sourse.forEach(item =>{
+        arrOfMenu.add(item);
+    });
 
 function filter() {
     listOFmenu.addEventListener('click', (e) => {
         const tgID = e.target.dataset.id;
-        console.log(tgID)
-        switch (tgID) {
-            case 'all':
-                getItems('delicious__menu-products-item');
-                break
-            case 'soupe':
-                getItems(tgID);
-                break
-            case 'pizza':
-                getItems(tgID);
-                break
-            case 'pasta':
-                getItems(tgID);
-                break
-            case 'desert':
-                getItems(tgID);
-                break
-            case 'wine':
-                getItems(tgID);
-                break
-            case 'beer':
-                getItems(tgID);
-                break
-            case 'drinks':
-                getItems(tgID);
-                break
-
+        if(arrOfMenu.has(tgID)){
+            getItems(tgID);
+        }else{
+            getItems('delicious__menu-products-item');
         }
-
     });
 }
 
