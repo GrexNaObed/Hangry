@@ -506,6 +506,12 @@ body.lock {
   color: #e5e5e5;
 }
 
+.geo-map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .footer {
   min-height: 100px;
   background-color: rgba(0, 0, 0, 0.9);
